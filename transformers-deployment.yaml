@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: transformers-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: transformers
+  template:
+    metadata:
+      labels:
+        app: transformers
+    spec:
+      containers:
+      - name: transformers-web
+        image: transformers-app
+        ports:
+          - containerPort: 5000
+        env:
+          - name: SQLALCHEMY_DATABASE_URI
+            value: postgresql://postgres:password@db:5432/transformers_db
