@@ -24,3 +24,5 @@ COPY . /usr/src/app/
 
 # final configuration
 EXPOSE 8000
+ENTRYPOINT ["flask", "run"]
+CMD ["--host", "0.0.0.0", "--port", "8000", "--debug"]
