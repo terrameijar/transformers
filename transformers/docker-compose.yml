@@ -1,0 +1,42 @@
+name: pyconzim24
+
+services:
+  web:
+    build: .
+    command: flask run --host 0.0.0.0 --port 8000 --debug
+    ports:
+      - 8001:8000
+    depends_on:
+      - db
+    environment:
+      - FLASK_APP=app
+      - FLASK_ENV=development
+    volumes:
+      - .:/usr/src/app
+    healthcheck:
+      test: curl --fail http://localhost:8000 || exit 1
+      interval: 30s
+      timeout: 10s
+      start_period: 10s
+      retries: 3
+    networks:
+      - db_network
+
+  db:
+    image: postgres:13
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
+      POSTGRES_DB: ${POSTGRES_DB:-transformers_db}
+    env_file: .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - db_network
+
+volumes:
+  postgres_data:
+
+networks:
+  db_network:

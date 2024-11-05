@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Transformer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" type="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon-96x96.png') }}" sizes='96x96' />
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='apple-touch-icon.png')}}" />
+    
+</head>
+<body>
+    <div class="profile-container">
+        <h1 id="name"></h1>
+        <div id="transformer-details">
+            <img id="transformer-image" alt="Transformer Image" style="max-width: 300px; display:none;" />
+            <div class="profile-info">
+                <p class="quote"><span id="quote"></span></p>
+                <p><strong>Affiliation:</strong> <span id="affiliation"></span></p>
+                <p><strong>Alt Mode:</strong> <span id="transformation_mode"></span></p>
+                <p><strong>Description:</strong> <span id="description"></span></p>
+            </div>
+        </div>
+        <a href="#" id="back-to-list" class="back-button">Back to List</a>
+    </div>
+    <script src="{{ url_for('static', filename='js/view.js') }}"></script>
+</body>
+</html>

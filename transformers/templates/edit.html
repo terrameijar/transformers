@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Transformer</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" type="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon-96x96.png') }}" sizes='96x96' />
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='apple-touch-icon.png')}}" />
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h1>Edit Transformer</h1>
+                    </div>
+                    <div class="card-body">
+                        <form id="edit-form" method="POST" action="/transformers/edit/{{ transformer.id }}">
+                            <div class="form-group row">
+                                <label for="name" class="col-sm-2 col-form-label">Name:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="name" name="name" value="{{ transformer.name }}" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="affiliation" class="col-sm-2 col-form-label">Affiliation:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="affiliation" name="affiliation" value="{{ transformer.affiliation }}" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="abilities" class="col-sm-2 col-form-label">Abilities:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="abilities" name="abilities" value="{{ transformer.abilities }}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="transformation_mode" class="col-sm-2 col-form-label">Alt Mode:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="transformation_mode" name="transformation_mode" value="{{ transformer.transformation_mode }}" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="image_url" class="col-sm-2 col-form-label">Image URL:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="image_url" name="image_url" value="{{ transformer.image_url }}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="description" class="col-sm-2 col-form-label">Description:</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" id="description" name="description" required>{{ transformer.description }}</textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="quote" class="col-sm-2 col-form-label">Quote:</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" id="quote" name="quote" required>{{ transformer.quote }}</textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </form>
+                        <a href="#" id="back-to-list" class="btn btn-secondary mt-3">Back to List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='js/edit.js') }}"></script>
+</body>
+</html>
+</html>

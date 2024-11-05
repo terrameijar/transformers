@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transformers List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="icon" type="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon-96x96.png') }}" sizes='96x96' />
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='apple-touch-icon.png')}}" />
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Transformers Teletraan I</h1>
+        <div class="table-container">
+            <!-- Search Form -->
+            <form id="search-form" class="form-inline mb-3">
+                <div class="form-group mx-sm-3 mb-2">
+                    <label for="name" class="sr-only">Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Search by name">
+                </div>
+                <div class="form-group mx-sm-3 mb-2">
+                    <label for="affiliation" class="sr-only">Affiliation</label>
+                    <input type="text" class="form-control" id="affiliation" placeholder="Search by affiliation">
+                </div>
+                <button type="submit" class="btn btn-primary mb-2">Search</button>
+                <button id="clear-button" type="button" class="btn btn-secondary mb-2 ml-2">Clear</button>
+            </form>
+
+            <!-- Transformers Table -->
+            <table id="transformers-table" class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Name</th>
+                        <th>Affiliation</th>
+                        <th>Alt Mode</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <!-- Pagination Controls -->
+            <div id="pagination" class="d-flex justify-content-between">
+                <button id="prev-page" class="btn btn-outline-primary">Previous</button>
+                <span id="page-info" class="align-self-center"></span>
+                <button id="next-page" class="btn btn-outline-primary">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+</body>
+</html>
+</html>
