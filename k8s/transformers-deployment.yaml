@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: transformers-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: transformers
+  template:
+    metadata:
+      labels:
+        app: transformers
+    spec:
+      containers:
+      - name: transformers-web
+        image: vndlovu/transformers-app:dev_k8s_db
+        ports:
+          - containerPort: 8000
+        env:
+          - name: POSTGRES_USER
+            valueFrom:
+              secretKeyRef:
+                name: postgres-secret
+                key: POSTGRES_USER
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: postgres-secret
+                key: POSTGRES_PASSWORD
+          - name: POSTGRES_DB
+            value: transformers_db

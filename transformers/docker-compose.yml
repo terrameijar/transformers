@@ -6,7 +6,7 @@ services:
     ports:
       - 8001:8000
     depends_on:
-      - db
+      - postgres-service
     environment:
       - FLASK_APP=app
       - FLASK_ENV=development
@@ -21,7 +21,7 @@ services:
     networks:
       - db_network
 
-  db:
+  postgres-service:
     image: postgres:13
     restart: always
     environment:

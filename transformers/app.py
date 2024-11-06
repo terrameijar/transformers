@@ -1,3 +1,4 @@
+import os
 import csv
 from io import StringIO
 
@@ -11,6 +12,10 @@ from commands import populate_database, delete_duplicates
 
 app = Flask(__name__)
 app.config.from_object(Config)
+
+if Config.TF_APP_ENVIRONMENT == "dev":
+    os.makedirs(Config.basedir, exist_ok=True)
+
 db.init_app(app)
 migrate = Migrate(app, db)
 
