@@ -160,7 +160,6 @@ def export_transformers():
 
 # HTML Views (User Facing Pages)
 
-
 @app.route("/")
 def list_all_transformers():
     """
@@ -192,6 +191,11 @@ def edit_transformer(id):
         return redirect(url_for("list_all_transformers"))
     return render_template("edit.html", transformer=transformer)
 
+
+# Health Check and Debugging Endpoints
+@app.route("/healthcheck", methods=["GET"])
+def healthcheck():
+    return jsonify({"NODE_NAME": os.environ.get('NODE_NAME', 'node name unknown')})
 
 if __name__ == "__main__":
     app.run(debug=True)
