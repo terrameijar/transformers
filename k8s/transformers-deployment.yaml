@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: transformers-web
-        image: vndlovu/transformers-app:dev_k8s_db
+        image: vndlovu/transformers-app:6a539ef5eb93
         ports:
           - containerPort: 8000
         env:
@@ -34,4 +34,4 @@ spec:
           - name: NODE_NAME
             valueFrom:
               fieldRef:
-                fieldPath: spec.nodename
+                fieldPath: spec.nodeName
