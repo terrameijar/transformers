@@ -1,28 +1,109 @@
-# PyCon Zim 2024 Code Examples
+# Transformers Flask API
 
-Welcome to the Docker Essentials for Python Developers code examples repository! This repo contains two distinct examples demonstrating how to Dockerize Flask applications. These examples are designed to help you understand the basics of containerization and how to apply it to both simple and complex applications.
+This project is a Flask application that manages a database of Transformers characters. It includes a PostgreSQL database for production and SQLite for development. The application can be deployed using Docker Compose for local testing and Kubernetes for production.
 
-## Complex Docker Example
+## Getting Started
 
-The `complex_docker` directory contains an example of how to Dockerize a multi-container app using Docker Compose. This example includes a Flask application with a PostgreSQL database.
+### Prerequisites
 
-### Getting Started
+- Docker
+- Docker Compose
+- (Optional) Kubernetes (kubectl and a running cluster)
 
-1. **Navigate to the `complex_docker` directory:**
+### Local Development
 
-   ```sh
-   cd complex_docker
-   ```
-
-2. **Build the Docker images and start the services:**
+1. **Clone the repository:**
 
    ```sh
-   docker-compose up --build
+   git clone https://github.com/terrameijar/transformers.git
+   cd transformers
    ```
 
-3. **Access the application:**
+2. **Set up the environment variables:**
+   Create a `.env` file in the `transformers` directory with the following content:
 
-   Open your browser and navigate to `http://localhost:8001`.
+```env
+POSTGRES_USER=<your_postgres_username>
+POSTGRES_PASSWORD=<your_postgres_password>
+POSTGRES_DB=<your_transformers_db_name>
+
+```
+
+3. **Build the Docker images and start the services:**
+
+```shell
+docker compose up --build
+```
+
+4. **Access the application:**
+
+Open your browser and navigate to `http://localhost:8001`.
+
+### Kubernetes Deployment
+
+1. **Apply the Kubernetes configurations:**
+
+Navigate to the project root directory and run:
+
+```shell
+kubectl apply -f k8s/
+```
+
+2. **Access the application:**
+   There are two ways to access this application depending on where it is run; via an internal IP or an external IP (if available).
+
+### Public Cloud Setup
+
+If running this on a public cloud like AWS, GKE or similar, set up the Transformers service as a load balancer by modifying `k8s/transformers-service.yaml` to use `LoadBalancer` type:
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: transformers-service
+spec:
+  selector:
+    app: transformers
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+  type: LoadBalancer
+```
+
+Apply the modified service configuration:
+
+```shell
+kubectl apply -f k8s/transformers-service.yaml
+```
+
+Wait for the external IP to be assigned. You can check the status using:
+
+```shell
+kubectl get services
+```
+
+Once the IP is assigned, open your browser and navigate to http://<external-ip>:8000.
+
+### On Prem/Bare Metal Set up
+
+- Install MetalLB in your Kubernetes cluster following the [MetalLB Installation guide](https://metallb.universe.tf/installation/).
+
+- Configure MetalLB with a pool of IP addresses using the `k8s/metallb-config.yaml` file.
+
+- Apply the MetalLB configuration:
+
+```shell
+kubectl apply -f k8s/metallb/metallb-config.yaml
+```
+
+Check the external IP:
+
+```shell
+kubectl get services
+```
+
+Once the external IP is assigned, open your browser and navigate to http://<your-server-ip>
 
 ### Code Overview
 
@@ -64,13 +145,15 @@ docker-compose.yml
 
 ### Custom Commands
 
-The complex example includes custom Flask CLI commands:
+The transformers app contains custom Flask CLI commands that can be run from within the transformers api container:
 
 - **Populate the database:**
 
-  ```sh
-  flask populate_db
-  ```
+Exec into the API container and run this command to populate the database:
+
+```sh
+flask populate_db
+```
 
 - **Delete duplicate Transformers:**
 
