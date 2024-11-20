@@ -26,4 +26,4 @@ COPY . /usr/src/app/
 EXPOSE 8000
 
 ENTRYPOINT ["gunicorn", "app:app"]
-CMD ["--bind", "0.0.0.0:8000"]
+CMD ["--bind", "0.0.0.0:8000", "--access-logfile", "-"]
