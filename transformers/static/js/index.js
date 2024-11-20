@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
                             <td>
                                 <a href="/transformers/${encodeURIComponent(transformer.name)}?page=${page}" >| View</a> |
-                                <a href="/transformers/edit/${transformer.id}?page=${page}">Edit</a> |
+                                
                                 
                             </td>
                         </tr>

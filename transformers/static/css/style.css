@@ -1,5 +1,10 @@
+@font-face {
+    font-family: transformersFont;
+    src: url(../fonts/transformers_font.ttf);
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: transformersFont, Arial, sans-serif;
     text-align: center;
     margin-top: 50px;
     background-color: #f4f4f4;  /* Light gray background */
@@ -59,7 +64,7 @@ tbody tr:hover {
 
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: transformersFont, Arial, sans-serif;
     background-color: #f4f4f4;
     color: #333;
     margin: 0;

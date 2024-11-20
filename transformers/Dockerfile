@@ -24,5 +24,6 @@ COPY . /usr/src/app/
 
 # final configuration
 EXPOSE 8000
-ENTRYPOINT ["flask", "run"]
-CMD ["--host", "0.0.0.0", "--port", "8000", "--debug"]
+
+ENTRYPOINT ["gunicorn", "app:app"]
+CMD ["--bind", "0.0.0.0:8000"]
