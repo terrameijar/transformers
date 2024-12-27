@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: transformers-web
-        image: vndlovu/transformers-app:6a539ef5eb93
+        image: vndlovu/transformers-app:latest
         ports:
           - containerPort: 8000
         env:
